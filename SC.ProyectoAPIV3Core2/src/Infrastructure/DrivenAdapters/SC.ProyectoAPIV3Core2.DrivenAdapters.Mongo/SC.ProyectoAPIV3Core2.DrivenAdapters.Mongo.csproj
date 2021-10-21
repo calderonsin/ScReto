@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="$(MongoDBDriver)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Domain\$(SolutionName).Domain.Entities\$(SolutionName).Domain.Entities.csproj" />
+    <ProjectReference Include="..\..\Helpers\$(SolutionName).Helpers.ObjectsUtils\$(SolutionName).Helpers.ObjectsUtils.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Automapper" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entities\Entity.cs"></None>
+    <None Include="Entities\EntityAdapter.cs"></None>
+    <None Include="Context.cs"></None>
+  </ItemGroup>
+</Project>

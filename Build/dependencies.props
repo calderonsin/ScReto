@@ -1,0 +1,54 @@
+<Project>
+  <PropertyGroup Label="SDK Versions">
+    <NetStandardTargetVersion>netstandard2.0</NetStandardTargetVersion>
+    <NetCoreTargetVersion>netcoreapp3.1</NetCoreTargetVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package Versions">
+    <AutoMapperExtensionsMicrosoftDependencyInjection>6.0.0</AutoMapperExtensionsMicrosoftDependencyInjection>
+    <Moq>4.10.1</Moq>
+    <AutoMapper>8.0.0</AutoMapper>
+	  <MongoDBDriver>2.8.0</MongoDBDriver>
+    <AutoMapperData>3.0.0</AutoMapperData>
+    <NewtonsoftJson>12.0.2</NewtonsoftJson>
+    <SerilogAspNetCore>2.1.1</SerilogAspNetCore>
+    <credinetComunApi>1.0.14652</credinetComunApi>
+    <MicrosoftNETTestSdk>15.8.0</MicrosoftNETTestSdk>
+	  <SCAdministradorLogs>1.0.14644</SCAdministradorLogs>
+    <MicrosoftAzureKeyVault>3.0.2</MicrosoftAzureKeyVault>
+	  <SCAdministradorLlaves>1.0.13737</SCAdministradorLlaves>
+    <FluentValidationAspNetCore>8.6.1</FluentValidationAspNetCore>
+    <SSCDatosRepositorioGenerico>3.0.3</SSCDatosRepositorioGenerico>
+    <MicrosoftCodeAnalysisCommon>2.10.0</MicrosoftCodeAnalysisCommon>
+	  <credinetexceptionmiddleware>1.0.13907</credinetexceptionmiddleware>
+    <MicrosoftAspNetCoreRazorDesign>2.2.0</MicrosoftAspNetCoreRazorDesign>
+    <MicrosoftAspNetCoreMvcNewtonsoftJson>3.0.0</MicrosoftAspNetCoreMvcNewtonsoftJson>
+    <MicrosoftApplicationInsightsAspNetCore>2.5.1</MicrosoftApplicationInsightsAspNetCore>
+    <MicrosoftAspNetCoreMvcVersioningApiExplorer>4.1.0</MicrosoftAspNetCoreMvcVersioningApiExplorer>
+    <MicrosoftIdentityModelClientsActiveDirectory>5.2.6</MicrosoftIdentityModelClientsActiveDirectory>
+    <MicrosoftVisualStudioAzureContainersToolsTargets>1.7.2</MicrosoftVisualStudioAzureContainersToolsTargets>
+    <MicrosoftExtensionsPlatformAbstractions>1.1.0</MicrosoftExtensionsPlatformAbstractions>
+    <EntityFrameworkCoreSqlServer>5.0.10</EntityFrameworkCoreSqlServer>
+	<EntityFrameworkCore>5.0.10</EntityFrameworkCore>
+    <EntityFrameworkCoreTools>5.0.10</EntityFrameworkCoreTools>
+    <ConfigurationManager>5.0.0</ConfigurationManager>
+    <MicrosoftExtensionsConfiguration>5.0.0</MicrosoftExtensionsConfiguration>
+    <MicrosoftExtensionsConfigurationJson>5.0.0</MicrosoftExtensionsConfigurationJson>
+    <MicrosoftEntityFrameworkCoreInMemory>5.0.11</MicrosoftEntityFrameworkCoreInMemory>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Test Package Versions">
+    <MSTestTest>1.4.0</MSTestTest>
+    <XUnitPackageVersion>2.4.1</XUnitPackageVersion>
+    <FluentAssertionsVersion>5.0.0</FluentAssertionsVersion>
+    <XUnitRunnerVisualstudio>2.4.3</XUnitRunnerVisualstudio>
+    <ASPNetCoreTestHostVersion>2.0.1</ASPNetCoreTestHostVersion>
+    <MicrosoftNETTestSdkPackageVersion>16.5.0</MicrosoftNETTestSdkPackageVersion>
+  <coverletcollector>1.2.0</coverletcollector>
+  </PropertyGroup>
+
+  <PropertyGroup Label="CLI Tools Versions">
+    <DotnetXUnitPackageVersion>2.3.1</DotnetXUnitPackageVersion>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.Domain.Entities.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.Domain.Entities.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Entities\Gateway\ITestEntityRepository.cs"></None>
+    <None Include="Entities\Entity.cs"></None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.AppServices.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.AppServices.xml</DocumentationFile>
+  </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
+      <PackageReference Include="AutoMapper.Data" Version="$(AutoMapperData)" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EntityFrameworkCore)" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EntityFrameworkCoreSqlServer)"/>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(EntityFrameworkCoreTools)">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="SC.AdministradorLlaves" Version="$(SCAdministradorLlaves)" />
+      <PackageReference Include="SC.AdministradorLogs.Core3" Version="$(SCAdministradorLogs)" />
+      <PackageReference Include="FluentValidation.AspNetCore" Version="$(FluentValidationAspNetCore)" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="$(MicrosoftAspNetCoreMvcNewtonsoftJson)" />
+      <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="$(MicrosoftExtensionsPlatformAbstractions)" />
+      <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="$(MicrosoftIdentityModelClientsActiveDirectory)" />
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="$(AutoMapperExtensionsMicrosoftDependencyInjection)" />
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="$(MicrosoftVisualStudioAzureContainersToolsTargets)" />
+      <PackageReference Include="System.Configuration.ConfigurationManager" Version="$(ConfigurationManager)" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\SC.ProyectoAPIV3Core1.DrivenAdapters.Sql\SC.ProyectoAPIV3Core1.DrivenAdapters.Sql.csproj" />
+      <ProjectReference Include="..\..\..\Tests\Helpers\SC.ProyectoAPIV3Core2.Helpers.Commons\SC.ProyectoAPIV3Core2.Helpers.Commons.csproj" />
+      <ProjectReference Include="..\..\Domain\$(SolutionName).Domain.UseCase\$(SolutionName).Domain.UseCase.csproj" />
+      <ProjectReference Include="..\..\Domain\$(SolutionName).Domain.Entities\$(SolutionName).Domain.Entities.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\DrivenAdapters\$(SolutionName).DrivenAdapters.Mongo\$(SolutionName).DrivenAdapters.Mongo.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\EntryPoints\$(SolutionName).EntryPoints.ReactiveWeb\$(SolutionName).EntryPoints.ReactiveWeb.csproj" />
+
+    </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+    <Folder Include="Automapper\" />
+    <Folder Include="Build" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Program.cs"></None>
+    <None Include="Startup.cs"></None>
+    <None Include="Dockerfile"></None>
+    <None Include="appsettings.json" />
+    <None Include="Move-props.ps1"></None>
+    <None Include="UseCaseConfig.cs"></None>
+    <None Include="wwwroot\index.html"></None>
+    <None Include="wwwroot\logosc.jpg"></None>
+    <None Include="wwwroot\swagger.png"></None>
+    <None Include="wwwroot\corelogo.png"></None>
+    <None Include="wwwroot\LogoColor.png"></None>
+    <None Include="wwwroot\stylesheet.css"></None>
+    <None Include="ConfigurationServices.cs"></None>
+    <None Include="wwwroot\swagger.Staging.css"></None>
+    <None Include="Automapper\EntityProfile.cs"></None>
+    <None Include="wwwroot\swagger.Development.css"></None>
+    <None Include="wwwroot\swagger.Production.css"></None>
+    <None Include="Build\dependencies.props"></None>
+    <None Include="Directory.Build.props"></None>
+  </ItemGroup>
+</Project>
