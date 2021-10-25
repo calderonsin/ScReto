@@ -11,14 +11,14 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
     {
 
         private readonly ICreditoRepositorio<Credito> creditorepositorio;
-        private readonly ClienteAdaptador clienteadaptor;
+        private readonly ClienteAdaptador clientadaptador;
         private readonly IClienteRepositorio<Cliente> clienterepositorio;
 
         public GestionarCreditoCasosUsos(ICreditoRepositorio<Credito> creditorepositorio, ClienteAdaptador clienteadaptador, IClienteRepositorio<Cliente> clienterepositorio)
         {
             this.creditorepositorio = creditorepositorio;
             this.clienterepositorio = clienterepositorio;
-            this.clienteadaptor = clienteadaptador;
+            this.clientadaptador = clienteadaptador;
 
         }
 
@@ -38,27 +38,27 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
 
         public async Task<Credito> AñadirCredito(Credito credito)
         {
-            // calculate the maximum term
+            // calcula el maximo plazo
             var plazo_maximo = CalcularPlazoMaximo(credito);
             if (credito.Plazo > plazo_maximo)
             {
                 return credito = null;
 
             }
-            //check if client has quota
+            //verifica si el cliente tiene cupo
             if (ComprobarClienteCupo(credito))
             {
                 var cliente = clienterepositorio.EncontrarPorId(credito.ClienteId).Result;
                 var credito_creado = await creditorepositorio.Add(credito);
                 cliente.Cupo = cliente.Cupo - credito.Valor_capital;
-                clienteadaptor.Actualizar(cliente);
+                clientadaptador.Actualizar(cliente);
                 return credito_creado;
             }
             return credito = null;
         }
         public bool ComprobarClienteCupo(Credito credito)
         {
-            var cliente = clienteadaptor.EncontrarPorId(credito.ClienteId).Result;
+            var cliente = clientadaptador.EncontrarPorId(credito.ClienteId).Result;
             if (cliente == null)
             {
                 return false;

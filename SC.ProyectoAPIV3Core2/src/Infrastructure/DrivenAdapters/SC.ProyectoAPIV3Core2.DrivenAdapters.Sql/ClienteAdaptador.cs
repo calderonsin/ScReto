@@ -12,9 +12,9 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
     {
         private readonly ScDbContexto contexto;
 
-        public ClienteAdaptador(ScDbContexto context)
+        public ClienteAdaptador(ScDbContexto contexto)
         {
-            this.contexto = context;
+            this.contexto = contexto;
 
         }
         public async Task<Cliente> Añadir(Cliente cliente)

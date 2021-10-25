@@ -25,8 +25,8 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
         public async Task<Credito> Add(Credito credito)
         {
             contexto.Add(credito);
-            var returned = await contexto.SaveChangesAsync();
-            Console.WriteLine(returned);
+            await contexto.SaveChangesAsync();
+            //Console.WriteLine(returned);
             return credito;
 
         }

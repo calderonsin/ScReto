@@ -14,13 +14,13 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
     [Route("api/[controller]/[action]")]
     public class CreditoControlador : BaseController<CreditoControlador>
     {
-        private readonly GestionarCreditoCasosUsos manage;
-        private readonly IMapper mapper;
+        private readonly GestionarCreditoCasosUsos Gestionar;
+        private readonly IMapper mapeo;
 
-        public CreditoControlador(GestionarCreditoCasosUsos manage, IMapper mapper)
+        public CreditoControlador(GestionarCreditoCasosUsos gestionar, IMapper mapeo)
         {
-            this.manage = manage;
-            this.mapper = mapper;
+            this.Gestionar = gestionar;
+            this.mapeo = mapeo;
         }
 
         [ProducesResponseType(200)]
@@ -28,18 +28,18 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         [ProducesResponseType(406)]
         [HttpGet(Name = "GetCreditoById")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Credito>))]
-        public async Task<IActionResult> GetCredito()
+        public async Task<IActionResult> ObtenerCredito()
         {
-            var respuestaNegocio = await manage.EncontrarTodo();
+            var respuestaNegocio = await Gestionar.EncontrarTodo();
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
 
         [ProducesResponseType(404)]
-        [HttpGet(Name = "FindByCreditoId")]
+        [HttpGet(Name = "EncontrarPorId")]
         [ProducesResponseType(200, Type = typeof(Credito))]
-        public async Task<ActionResult<Credito>> FindByCreditoId(int id)
+        public async Task<ActionResult<Credito>> EncontrarPorId(int id)
         {
-            var respuestaNegocio = await manage.EncontrarPorId(id);
+            var respuestaNegocio = await Gestionar.EncontrarPorId(id);
             if (respuestaNegocio == null)
             {
                 return NotFound();
@@ -54,16 +54,16 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         [HttpPost()]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> Post([FromBody] Credito_dto credito_dto)
+        public async Task<ActionResult> Crear([FromBody] Credito_dto credito_dto)
         {
-            var credito = mapper.Map<Credito>(credito_dto);
-            var credito_BD = await manage.AñadirCredito(credito);
+            var credito = mapeo.Map<Credito>(credito_dto);
+            var credito_BD = await Gestionar.AñadirCredito(credito);
             //check if the request is valid or not
             if (credito_BD == null)
             {
                 return BadRequest();
             }
-            var respuestaNegocio = CreatedAtAction(nameof(FindByCreditoId), new { id = credito_BD.CreditoId }, credito_BD);
+            var respuestaNegocio = CreatedAtAction(nameof(EncontrarPorId), new { id = credito_BD.CreditoId }, credito_BD);
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
 
