@@ -29,7 +29,7 @@ namespace SC.ProyectoAPIV3Core2.AppServices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DbContext>(options =>options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddDbContext<DbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson().AddFluentValidation();
             services.AddCors(options =>
             {

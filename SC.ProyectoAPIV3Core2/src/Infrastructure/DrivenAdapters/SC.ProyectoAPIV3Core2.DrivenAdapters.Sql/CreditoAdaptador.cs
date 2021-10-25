@@ -3,30 +3,29 @@ using SC.ProyectoAPIV3Core2.Domain.Entities.Entities;
 using SC.ProyectoAPIV3Core2.Domain.Entities.Entities.Gateway;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
 {
-    public class CreditoAdapter : ICreditoRepository<Credito>
+    public class CreditoAdaptador : ICreditoRepositorio<Credito>
     {
-        private readonly ScDbContext context;
+        private readonly ScDbContexto contexto;
 
-        public CreditoAdapter(ScDbContext context)
+        public CreditoAdaptador(ScDbContexto contexto)
         {
-            this.context = context;
+            this.contexto = contexto;
 
         }
 
-        public async Task<List<Credito>> FindAll()
+        public async Task<List<Credito>> EncontrarTodo()
         {
-            return await context.Creditos.ToListAsync();
+            return await contexto.Creditos.ToListAsync();
         }
 
         public async Task<Credito> Add(Credito credito)
         {
-            context.Add(credito);
-            var returned = await context.SaveChangesAsync();
+            contexto.Add(credito);
+            var returned = await contexto.SaveChangesAsync();
             Console.WriteLine(returned);
             return credito;
 
@@ -37,11 +36,11 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
             throw new NotImplementedException();
         }
 
-       
 
-        public async Task<Credito> FindById(int creditoId)
+
+        public async Task<Credito> EncontrarPorId(int creditoId)
         {
-            return await context.Creditos.FindAsync(creditoId);
+            return await contexto.Creditos.FindAsync(creditoId);
         }
 
         public Task<int> Update(Credito credito)

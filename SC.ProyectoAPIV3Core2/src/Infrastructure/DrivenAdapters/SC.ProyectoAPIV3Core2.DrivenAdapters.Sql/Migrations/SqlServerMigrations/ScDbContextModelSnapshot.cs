@@ -8,7 +8,7 @@ using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql;
 
 namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Migrations.SqlServerMigrations
 {
-    [DbContext(typeof(ScDbContext))]
+    [DbContext(typeof(ScDbContexto))]
     partial class ScDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

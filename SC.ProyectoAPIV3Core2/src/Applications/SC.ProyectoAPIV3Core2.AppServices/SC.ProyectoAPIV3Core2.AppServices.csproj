@@ -15,7 +15,7 @@
       <PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
       <PackageReference Include="AutoMapper.Data" Version="$(AutoMapperData)" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EntityFrameworkCore)" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EntityFrameworkCoreSqlServer)"/>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(EntityFrameworkCoreSqlServer)" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(EntityFrameworkCoreTools)">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -33,7 +33,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\SC.ProyectoAPIV3Core1.DrivenAdapters.Sql\SC.ProyectoAPIV3Core1.DrivenAdapters.Sql.csproj" />
       <ProjectReference Include="..\..\..\Tests\Helpers\SC.ProyectoAPIV3Core2.Helpers.Commons\SC.ProyectoAPIV3Core2.Helpers.Commons.csproj" />
-      <ProjectReference Include="..\..\Domain\$(SolutionName).Domain.UseCase\$(SolutionName).Domain.UseCase.csproj" />
+      <ProjectReference Include="..\..\Domain\SC.ProyectoAPIV3Core2.Domain.UseCase\SC.ProyectoAPIV3Core2.Domain.UseCase.csproj" />
       <ProjectReference Include="..\..\Domain\$(SolutionName).Domain.Entities\$(SolutionName).Domain.Entities.csproj" />
       <ProjectReference Include="..\..\Infrastructure\DrivenAdapters\$(SolutionName).DrivenAdapters.Mongo\$(SolutionName).DrivenAdapters.Mongo.csproj" />
       <ProjectReference Include="..\..\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.csproj" />

@@ -12,7 +12,7 @@
     <DocumentationFile>bin\Release\$(NetCoreTargetVersion)\SC.ProyectoAPIV3Core2.Domain.Entities.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Entities\Gateway\ITestEntityRepository.cs"></None>
+    <None Include="Entities\Gateway\ITestEntityRepositorio.cs"></None>
     <None Include="Entities\Entity.cs"></None>
   </ItemGroup>
 

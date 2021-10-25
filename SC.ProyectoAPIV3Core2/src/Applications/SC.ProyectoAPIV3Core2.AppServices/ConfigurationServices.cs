@@ -30,14 +30,14 @@ namespace SC.ProyectoAPIV3Core2.AppServices
             services.AddSingleton<IMensajesHelper, MensajesApiHelper>();
             //services.AddScoped<IClienteRepository<Cliente>, ClienteAdapter>();
             services.AddControllers();
-            services.AddScoped <ScDbContext>();
+            services.AddScoped <ScDbContexto>();
             services.AddScoped<ManageTestEntityUserCase>();
-            services.AddScoped<ManageClienteUseCase>();
-            services.AddScoped<ManageCreditoUseCase>();
-            services.AddScoped<ClienteAdapter>();
-            services.AddScoped<ITestEntityRepository>(provider => new EntityAdapter(services.BuildServiceProvider().GetRequiredService<IMapper>()));
-            services.AddScoped<IClienteRepository<Cliente>>(provider => new ClienteAdapter(services.BuildServiceProvider().GetRequiredService<ScDbContext>()));
-            services.AddScoped<ICreditoRepository<Credito>>(provider => new CreditoAdapter(services.BuildServiceProvider().GetRequiredService<ScDbContext>()));
+            services.AddScoped<GestionarClienteCasosUsos>();
+            services.AddScoped<GestionarCreditoCasosUsos>();
+            services.AddScoped<ClienteAdaptador>();
+            services.AddScoped<ITestEntityRepositorio>(provider => new EntityAdapter(services.BuildServiceProvider().GetRequiredService<IMapper>()));
+            services.AddScoped<IClienteRepositorio<Cliente>>(provider => new ClienteAdaptador(services.BuildServiceProvider().GetRequiredService<ScDbContexto>()));
+            services.AddScoped<ICreditoRepositorio<Credito>>(provider => new CreditoAdaptador(services.BuildServiceProvider().GetRequiredService<ScDbContexto>()));
 
             //REGISTRE ACÁ SUS SERVICIOS
             return services;

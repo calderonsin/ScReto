@@ -51,11 +51,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC.ProyectoAPIV3Core2.Helpe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC.ProyectoAPIV3Core2.DrivenAdapters.Sql", "SC.ProyectoAPIV3Core2\src\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.csproj", "{A431B35B-E666-4867-8184-5C897BC9EDB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests", "SC.ProyectoAPIV3Core2\Tests\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests.csproj", "{539318C0-7316-4CC5-8355-E496708438BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests", "SC.ProyectoAPIV3Core2\Tests\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests.csproj", "{539318C0-7316-4CC5-8355-E496708438BE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{BE683AEE-895F-4977-BABB-6AB44C118B4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SC.ProyectoAPIV3Core2.Helpers.Commons", "SC.ProyectoAPIV3Core2\Tests\Helpers\SC.ProyectoAPIV3Core2.Helpers.Commons\SC.ProyectoAPIV3Core2.Helpers.Commons.csproj", "{B8FCDE02-ACF3-4E58-B06C-A780C63238F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SC.ProyectoAPIV3Core2.Helpers.Commons", "SC.ProyectoAPIV3Core2\Tests\Helpers\SC.ProyectoAPIV3Core2.Helpers.Commons\SC.ProyectoAPIV3Core2.Helpers.Commons.csproj", "{B8FCDE02-ACF3-4E58-B06C-A780C63238F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

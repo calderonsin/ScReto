@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities.Gateway
@@ -6,10 +5,10 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities.Gateway
     /// <summary>
     /// ITestEntityRepository
     /// </summary>
-    public interface ITestEntityRepository
+    public interface ITestEntityRepositorio
     {
         /// <summary>
-        /// FindAll
+        /// EncontrarTodo
         /// </summary>
         /// <returns>Entity list</returns>
         List<Entity> FindAll(Entity entity = null);

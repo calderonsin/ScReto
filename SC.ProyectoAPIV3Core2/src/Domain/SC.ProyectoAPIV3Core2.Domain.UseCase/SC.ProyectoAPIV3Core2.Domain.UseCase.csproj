@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(NetCoreTargetVersion)</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
@@ -22,6 +22,6 @@
     <ProjectReference Include="..\..\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.csproj" />    
   </ItemGroup>
   <ItemGroup>
-    <None Include="ManageEntityUserCase.cs"></None>
+    <None Include="GestionarEntityCasosUsos.cs"></None>
   </ItemGroup>
 </Project>

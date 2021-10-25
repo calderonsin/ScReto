@@ -1,31 +1,27 @@
 ﻿using AutoMapper;
 using credinet.comun.api;
 using Microsoft.AspNetCore.Mvc;
-using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql;
 using SC.ProyectoAPIV3Core2.Domain.Entities.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static credinet.comun.negocio.RespuestaNegocio<credinet.exception.middleware.models.ResponseEntity>;
 using static credinet.exception.middleware.models.ResponseEntity;
-using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities;
 using SC.ProyectoAPIV3Core2.Domain.UseCase;
-using System;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
 {
     [Produces("application/json")]
     [ApiVersion("1.0")]
     [Route("api/[controller]/[action]")]
-    public class ClienteController : BaseController<ClienteController>
+    public class ClienteControlador : BaseController<ClienteControlador>
     {
-        private readonly ManageClienteUseCase manage;
-        private readonly IMapper mapper;
+        private readonly GestionarClienteCasosUsos gestionar;
+        private readonly IMapper mappeo;
 
-        public ClienteController(ManageClienteUseCase manage, IMapper mapper)
+        public ClienteControlador(GestionarClienteCasosUsos gestionar, IMapper mappeo)
         {
-            this.manage = manage;
-            this.mapper = mapper;
+            this.gestionar = gestionar;
+            this.mappeo = mappeo;
         }
 
 
@@ -36,18 +32,18 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Cliente>))]
         public async Task<IActionResult> Get()
         {
-            var respuestaNegocio = await manage.Findall();
+            var respuestaNegocio = await gestionar.EncontrarTodo();
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
 
 
                
         [ProducesResponseType(404)]
-        [HttpGet(Name ="FindById")]
+        [HttpGet(Name ="EncontrarPorId")]
         [ProducesResponseType(200, Type = typeof(Cliente))]
-        public  async Task<ActionResult<Cliente>> FindById(int id)
+        public  async Task<ActionResult<Cliente>> EncontrarPorId(int id)
         {            
-            var respuestaNegocio = await manage.FindById(id);
+            var respuestaNegocio = await gestionar.EncontrarPorId(id);
             if (respuestaNegocio == null )
                 {
                 return NotFound();
@@ -64,11 +60,11 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         [HttpPost()]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> Post([FromBody] Cliente_dto cliente_dto)
+        public async Task<ActionResult> Crear([FromBody] Cliente_dto cliente_dto)
         {
-            Cliente cliente = mapper.Map<Cliente>(cliente_dto);            
-            await manage.Add(cliente);
-            var respuestaNegocio =  CreatedAtAction(nameof(FindById), new { id = cliente.Id }, cliente);
+            Cliente cliente = mappeo.Map<Cliente>(cliente_dto);            
+            await gestionar.Añadir(cliente);
+            var respuestaNegocio =  CreatedAtAction(nameof(EncontrarPorId), new { id = cliente.Id }, cliente);
             //var respuestaNegocio = new CreatedAtRouteResult("GetById", new { id = cliente.Id }, cliente_tempo);
             //return respuestaNegocio;
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
@@ -79,12 +75,12 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         [ProducesResponseType(200, Type = typeof(Cliente))]
         [ProducesResponseType(400)]
         [HttpPut()]
-        public async Task<ActionResult> Update([FromBody] Cliente_dto cliente_dto)
+        public async Task<ActionResult> Actualizar([FromBody] Cliente_dto cliente_dto)
         {
 
-            var cliente = mapper.Map<Cliente>(cliente_dto);
+            var cliente = mappeo.Map<Cliente>(cliente_dto);
 
-            var identificador = await manage.Update(cliente);
+            var identificador = await gestionar.Actualizar(cliente);
             if (identificador == 0)
             {
                 return BadRequest();
@@ -95,19 +91,26 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
 
-
+     
         [ProducesResponseType(204, Type = typeof(Cliente))]
         [ProducesResponseType(400)]
         [HttpDelete()]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> Borrar(int id)
         {
-            /*var cliente_DB = await manage.FindById(id);
-            if (cliente_DB == null)
+            if (id == 0) 
             {
                 return BadRequest();
-            }*/
-            await manage.Delete(id);
-            return NoContent();
+            }
+            int result = 0;
+            result = await gestionar.Borrar(id);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            else 
+            {
+                return Ok();
+            }
 
 
 
@@ -125,7 +128,7 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
                 return BadRequest();
             }
 
-            var cliente_DB = await manage.FindById(id);
+            var cliente_DB = await gestionar.EncontrarPorId(id);
 
 
             if (cliente_DB == null)
@@ -133,12 +136,12 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
                 return NotFound();
             }
 
-            //var cliente_dto = mapper.Map<Cliente_dto>(cliente_DB);
-            await manage.Patch(id,patchDocument);
+            //var cliente_dto = mappeo.Map<Cliente_dto>(cliente_DB);
+            await gestionar.Patch(id,patchDocument);
 
             patchDocument.ApplyTo(cliente_dto, ModelState);
 
-            mapper.Map(autorDTO, autorDeLaDB);
+            mappeo.Map(autorDTO, autorDeLaDB);
 
             var isValid = TryValidateModel(autorDeLaDB);
 

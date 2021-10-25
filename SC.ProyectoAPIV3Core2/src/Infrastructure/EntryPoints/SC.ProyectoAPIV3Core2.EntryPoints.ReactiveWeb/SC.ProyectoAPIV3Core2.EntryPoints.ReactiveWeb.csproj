@@ -19,10 +19,10 @@
     <PackageReference Include="credinet-exception-middleware" Version="$(credinetexceptionmiddleware)" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Controllers\EntityController.cs"></None>
+    <None Include="Controllers\EntityControlador.cs"></None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Domain\$(SolutionName).Domain.UseCase\$(SolutionName).Domain.UseCase.csproj" />
+    <ProjectReference Include="..\..\..\Domain\SC.ProyectoAPIV3Core2.Domain.UseCase\SC.ProyectoAPIV3Core2.Domain.UseCase.csproj" />
     <ProjectReference Include="..\..\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.csproj" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using static credinet.comun.negocio.RespuestaNegocio<credinet.exception.middleware.models.ResponseEntity>;
 using static credinet.exception.middleware.models.ResponseEntity;
+using static credinet.exception.middleware.models.ResponseEntity;
 
 namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
 {
@@ -15,7 +16,7 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
     [Produces("application/json")]
     [ApiVersion("1.0")]
     [Route("api/[controller]/[action]")]
-    public class EntityController : BaseController<EntityController>
+    public class EntityControlador : BaseController<EntityControlador>
     {
         private readonly ManageTestEntityUserCase testNegocio;
 
@@ -23,7 +24,7 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         /// Build
         /// </summary>
         /// <param name="testNegocio"></param>
-        public EntityController(ManageTestEntityUserCase testNegocio)
+        public EntityControlador(ManageTestEntityUserCase testNegocio)
         {
             this.testNegocio = testNegocio;
         }

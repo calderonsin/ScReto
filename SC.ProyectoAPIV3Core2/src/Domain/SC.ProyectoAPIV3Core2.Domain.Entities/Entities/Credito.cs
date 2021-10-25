@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
 {
@@ -19,7 +17,7 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
         [Range(2, 12, ErrorMessage = "Valor  no valido")]
         public int Plazo { get; private set; }
 
-        [Range(0,500000000, ErrorMessage = "Valor  no valido")]
+        [Range(0, 500000000, ErrorMessage = "Valor  no valido")]
         public int Valor_capital { get; private set; }
         //variables de navegacion
         public int ClienteId { get; private set; }
@@ -40,6 +38,6 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
 
 
         }
-       
+
     }
 }

@@ -21,6 +21,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Domain\$(SolutionName).Domain.UseCase\$(SolutionName).Domain.UseCase.csproj" />
+    <ProjectReference Include="..\..\..\src\Domain\SC.ProyectoAPIV3Core2.Domain.UseCase\SC.ProyectoAPIV3Core2.Domain.UseCase.csproj" />
   </ItemGroup>
 </Project>

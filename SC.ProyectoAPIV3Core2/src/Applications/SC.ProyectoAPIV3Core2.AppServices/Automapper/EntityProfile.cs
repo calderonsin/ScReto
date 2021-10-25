@@ -18,7 +18,7 @@ namespace SC.ProyectoAPIV3Core2.AppServices.Automapper
         {
             CreateMap<Entity, DrivenAdapters.Mongo.Entities.Entity>();
             CreateMap<DrivenAdapters.Mongo.Entities.Entity, Entity>();
-            CreateMap<DrivenAdapters.Sql.Entities.ClienteAdapter, Cliente>();
+            CreateMap<DrivenAdapters.Sql.Entities.ClienteAdaptador, Cliente>();
             CreateMap<Cliente_dto, Cliente>().ReverseMap();
             CreateMap<Credito_dto, Credito>().ReverseMap();
             CreateMap<ClienteDtoHelper, Cliente>().ReverseMap();

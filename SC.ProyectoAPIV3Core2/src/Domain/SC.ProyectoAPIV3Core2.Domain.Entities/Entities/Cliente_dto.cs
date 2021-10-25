@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
 {
@@ -41,4 +38,4 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
         //public List<Credito> Creditos { get; private set; }
     }
 
-     }
+}

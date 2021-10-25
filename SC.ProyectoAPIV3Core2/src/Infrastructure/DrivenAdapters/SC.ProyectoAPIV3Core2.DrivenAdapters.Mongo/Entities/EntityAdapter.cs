@@ -9,7 +9,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo
     /// <summary>
     /// EntityAdapter
     /// </summary>
-    public class EntityAdapter : ITestEntityRepository
+    public class EntityAdapter : ITestEntityRepositorio
     {
         private readonly IMapper mapper;
 
@@ -23,7 +23,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo
         }
 
         /// <summary>
-        /// FindAll
+        /// EncontrarTodo
         /// </summary>
         /// <returns>Entity list</returns>
         public List<Entity> FindAll(Entity entity = null)
