@@ -1,2 +1,2 @@
 # ScReto
-solution using netcore,Ef core, clean architecture 
+Solution usando netcore,Ef core, arquitectura limpia y xunit
