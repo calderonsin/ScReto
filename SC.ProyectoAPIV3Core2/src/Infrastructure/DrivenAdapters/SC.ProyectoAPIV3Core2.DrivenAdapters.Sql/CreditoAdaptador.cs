@@ -16,13 +16,20 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
             this.contexto = contexto;
 
         }
-
+        /// <summary>
+        /// Encontrar todo.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Credito>> EncontrarTodo()
         {
             return await contexto.Creditos.ToListAsync();
         }
-
-        public async Task<Credito> Add(Credito credito)
+        /// <summary>
+        /// Crea un credito.
+        /// </summary>
+        /// <param name="credito">The credito.</param>
+        /// <returns></returns>
+        public async Task<Credito> Añadir(Credito credito)
         {
             contexto.Add(credito);
             await contexto.SaveChangesAsync();
@@ -30,20 +37,33 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
             return credito;
 
         }
-
-        public Task Delete(int id)
+        /// <summary>
+        /// Borrar credito.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public Task Borrar(int id)
         {
             throw new NotImplementedException();
         }
 
-
-
+        /// <summary>
+        /// Encuentro un  credito con la id creditoID.
+        /// </summary>
+        /// <param name="creditoId">The credito identifier.</param>
+        /// <returns></returns>
         public async Task<Credito> EncontrarPorId(int creditoId)
         {
             return await contexto.Creditos.FindAsync(creditoId);
         }
-
-        public Task<int> Update(Credito credito)
+        /// <summary>
+        /// Actualizar credito.
+        /// </summary>
+        /// <param name="credito">The credito.</param>
+        /// <returns></returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public Task<int> Actualizar(Credito credito)
         {
             throw new NotImplementedException();
         }

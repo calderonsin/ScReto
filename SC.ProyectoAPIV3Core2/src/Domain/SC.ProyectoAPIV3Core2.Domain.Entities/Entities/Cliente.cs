@@ -6,7 +6,10 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
     public class Cliente
     {
 
-
+        /// <summary>
+        /// Inicializa Un nuevo cliente <see cref="Cliente"/> class.
+        /// </summary>
+        /// <param name="cliente">The cliente.</param>
         public Cliente(Cliente_dto cliente)
         {
             this.Id = Id;
@@ -17,10 +20,12 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
             this.Municipio = cliente.Municipio;
             this.Departamento = cliente.Departamento;
             this.Cupo = 2000000;
-            //this.Creditos = cliente.Creditos;
 
         }
 
+        /// <summary>
+        /// Inicializa Un nuevo cliente <see cref="Cliente"/> class.
+        /// </summary>
         public Cliente()
         {
             this.Cupo = 2000000;

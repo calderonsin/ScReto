@@ -21,22 +21,23 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
         public int Valor_capital { get; private set; }
         //variables de navegacion
         public int ClienteId { get; private set; }
-        //public Cliente Cliente { get; private set; }
 
-
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Credito"/> class.
+        /// </summary>
         public Credito()
         {
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Credito"/> class.
+        /// </summary>
+        /// <param name="credito_dto">The credito dto.</param>
         public Credito(Credito_dto credito_dto)
         {
             this.Fecha = credito_dto.Fecha;
             this.Frecuencia = credito_dto.Frecuencia;
             this.Valor_capital = credito_dto.Valor_capital;
-            //this.Cliente = credito_dto.Valor_capital;
-
-
-
         }
 
     }

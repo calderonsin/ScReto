@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace SC.ProyectoAPIV3Core2.Domain.UseCase
 {
+    /// <summary>
+    /// Caso de uso para gestionar Creditos
+    /// </summary>
     public class GestionarCreditoCasosUsos
     {
 
@@ -14,6 +17,12 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
         private readonly ClienteAdaptador clientadaptador;
         private readonly IClienteRepositorio<Cliente> clienterepositorio;
 
+        /// <summary>
+        /// inicializa una nueva instancia de <see cref="GestionarCreditoCasosUsos"/> class.
+        /// </summary>
+        /// <param name="creditorepositorio">The creditorepositorio.</param>
+        /// <param name="clienteadaptador">The clienteadaptador.</param>
+        /// <param name="clienterepositorio">The clienterepositorio.</param>
         public GestionarCreditoCasosUsos(ICreditoRepositorio<Credito> creditorepositorio, ClienteAdaptador clienteadaptador, IClienteRepositorio<Cliente> clienterepositorio)
         {
             this.creditorepositorio = creditorepositorio;
@@ -21,7 +30,11 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
             this.clientadaptador = clienteadaptador;
 
         }
-
+        /// <summary>
+        /// Encontrars the por identifier.
+        /// </summary>
+        /// <param name="creditoId">The credito identifier.</param>
+        /// <returns></returns>
         public async Task<Credito> EncontrarPorId(int creditoId)
         {
             return await creditorepositorio.EncontrarPorId(creditoId);
@@ -29,6 +42,10 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
 
         }
 
+        /// <summary>
+        /// Encontrars  todo.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Credito>> EncontrarTodo()
         {
 
@@ -36,6 +53,11 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
 
         }
 
+        /// <summary>
+        /// Añadirs  credito.
+        /// </summary>
+        /// <param name="credito">The credito.</param>
+        /// <returns></returns>
         public async Task<Credito> AñadirCredito(Credito credito)
         {
             // calcula el maximo plazo
@@ -49,7 +71,7 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
             if (ComprobarClienteCupo(credito))
             {
                 var cliente = clienterepositorio.EncontrarPorId(credito.ClienteId).Result;
-                var credito_creado = await creditorepositorio.Add(credito);
+                var credito_creado = await creditorepositorio.Añadir(credito);
                 cliente.Cupo = cliente.Cupo - credito.Valor_capital;
                 clientadaptador.Actualizar(cliente);
                 return credito_creado;
@@ -74,6 +96,11 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase
             }
         }
 
+        /// <summary>
+        /// Calcular  plazo maximo.
+        /// </summary>
+        /// <param name="credito">The credito.</param>
+        /// <returns></returns>
         public int CalcularPlazoMaximo(Credito credito)
         {
             if (credito.Valor_capital >= 0 && credito.Valor_capital <= 100000)

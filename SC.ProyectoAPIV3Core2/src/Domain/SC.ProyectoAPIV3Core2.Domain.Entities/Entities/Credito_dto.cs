@@ -19,7 +19,6 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
 
         [Range(0, 500000000, ErrorMessage = "Valor  no valido")]
         public int Valor_capital { get; set; }
-
         public int ClienteId { get; set; }
 
 

@@ -8,7 +8,7 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities.Gateway
     public interface ITestEntityRepositorio
     {
         /// <summary>
-        /// EncontrarTodo
+        /// MostrarTodo
         /// </summary>
         /// <returns>Entity list</returns>
         List<Entity> FindAll(Entity entity = null);

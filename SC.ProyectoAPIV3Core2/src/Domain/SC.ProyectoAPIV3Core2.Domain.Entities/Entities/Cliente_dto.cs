@@ -35,7 +35,6 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
         [Required(ErrorMessage = "Campo requirido")]
         [StringLength(250, ErrorMessage = "Muchos caracteres")]
         public string Departamento { get; set; }
-        //public List<Credito> Creditos { get; private set; }
     }
 
 }

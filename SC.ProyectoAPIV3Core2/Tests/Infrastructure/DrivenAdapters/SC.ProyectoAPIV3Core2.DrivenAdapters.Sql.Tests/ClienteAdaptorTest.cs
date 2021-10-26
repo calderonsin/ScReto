@@ -54,7 +54,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests
             List<Cliente> list_cliente = await scdbcontext.Clientes.Include(s => s.Creditos).ToListAsync();
 
             //act
-            List<Cliente> resp = await (clienteadapter.EncontrarTodo());
+            List<Cliente> resp = await (clienteadapter.MostrarTodo());
 
             //asert
             Assert.NotNull(resp);

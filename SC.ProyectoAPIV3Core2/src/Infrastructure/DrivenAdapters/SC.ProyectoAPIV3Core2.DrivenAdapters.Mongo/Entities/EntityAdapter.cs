@@ -23,7 +23,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo
         }
 
         /// <summary>
-        /// EncontrarTodo
+        /// MostrarTodo
         /// </summary>
         /// <returns>Entity list</returns>
         public List<Entity> FindAll(Entity entity = null)

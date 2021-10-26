@@ -17,14 +17,21 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
     {
         private readonly GestionarClienteCasosUsos gestionar;
         private readonly IMapper mappeo;
-
+        /// <summary>
+        /// Inicializa Un nuevo CLienteControlador<see cref="ClienteControlador"/> class.
+        /// </summary>
+        /// <param name="gestionar">The gestionar.</param>
+        /// <param name="mappeo">The mappeo.</param>
         public ClienteControlador(GestionarClienteCasosUsos gestionar, IMapper mappeo)
         {
             this.gestionar = gestionar;
             this.mappeo = mappeo;
         }
 
-
+        /// <summary>
+        /// muestra todos los clientes.
+        /// </summary>
+        /// <returns></returns>
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(406)]
@@ -35,43 +42,46 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
             var respuestaNegocio = await gestionar.EncontrarTodo();
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
-
-
-               
+        /// <summary>
+        /// Encontra  por id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ProducesResponseType(404)]
-        [HttpGet(Name ="EncontrarPorId")]
+        [HttpGet(Name = "EncontrarPorId")]
         [ProducesResponseType(200, Type = typeof(Cliente))]
-        public  async Task<ActionResult<Cliente>> EncontrarPorId(int id)
-        {            
+        public async Task<ActionResult<Cliente>> EncontrarPorId(int id)
+        {
             var respuestaNegocio = await gestionar.EncontrarPorId(id);
-            if (respuestaNegocio == null )
-                {
+            if (respuestaNegocio == null)
+            {
                 return NotFound();
             }
-            
+
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
-
         /// <summary>
-        /// Create Cliente
+        /// Crear cliente.
         /// </summary>
-        /// <param name="cliente"></param>
+        /// <param name="cliente_dto">The cliente dto.</param>
         /// <returns></returns>
         [HttpPost()]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<ActionResult> Crear([FromBody] Cliente_dto cliente_dto)
         {
-            Cliente cliente = mappeo.Map<Cliente>(cliente_dto);            
+            Cliente cliente = mappeo.Map<Cliente>(cliente_dto);
             await gestionar.Añadir(cliente);
-            var respuestaNegocio =  CreatedAtAction(nameof(EncontrarPorId), new { id = cliente.Id }, cliente);
+            var respuestaNegocio = CreatedAtAction(nameof(EncontrarPorId), new { id = cliente.Id }, cliente);
             //var respuestaNegocio = new CreatedAtRouteResult("GetById", new { id = cliente.Id }, cliente_tempo);
             //return respuestaNegocio;
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
-
-       
-
+        /// <summary>
+        /// Actualizar cliente.
+        /// </summary>
+        /// <param name="cliente_dto">The cliente dto.</param>
+        /// <returns></returns>
         [ProducesResponseType(200, Type = typeof(Cliente))]
         [ProducesResponseType(400)]
         [HttpPut()]
@@ -86,18 +96,21 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
                 return BadRequest();
             }
             var respuestaNegocio = cliente;
-                    
+
             //return NoContent();
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
-
-     
+        /// <summary>
+        /// Borrar cliente con id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ProducesResponseType(204, Type = typeof(Cliente))]
         [ProducesResponseType(400)]
         [HttpDelete()]
         public async Task<ActionResult> Borrar(int id)
         {
-            if (id == 0) 
+            if (id == 0)
             {
                 return BadRequest();
             }
@@ -107,55 +120,10 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 return Ok();
             }
-
-
-
-
-
-            
         }
-
-
-        /*[HttpPatch()]
-        public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<Cliente_dto> patchDocument)
-        {
-            if (patchDocument == null)
-            {
-                return BadRequest();
-            }
-
-            var cliente_DB = await gestionar.EncontrarPorId(id);
-
-
-            if (cliente_DB == null)
-            {
-                return NotFound();
-            }
-
-            //var cliente_dto = mappeo.Map<Cliente_dto>(cliente_DB);
-            await gestionar.Patch(id,patchDocument);
-
-            patchDocument.ApplyTo(cliente_dto, ModelState);
-
-            mappeo.Map(autorDTO, autorDeLaDB);
-
-            var isValid = TryValidateModel(autorDeLaDB);
-
-            if (!isValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            await context.SaveChangesAsync();
-
-            return NoContent();
-
-        }*/
-
-
     }
 }

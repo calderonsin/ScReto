@@ -17,6 +17,11 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
             this.contexto = contexto;
 
         }
+        /// <summary>
+        /// Añadir cliente.
+        /// </summary>
+        /// <param name="cliente">The cliente.</param>
+        /// <returns></returns>
         public async Task<Cliente> Añadir(Cliente cliente)
         {
             contexto.Add(cliente);
@@ -25,7 +30,11 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
 
         }
 
-        public async Task<List<Cliente>> EncontrarTodo()
+        /// <summary>
+        /// Mostrar  todo.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Cliente>> MostrarTodo()
 
         {
 
@@ -33,13 +42,22 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
 
 
         }
-
+        /// <summary>
+        /// Encontrars por id.
+        /// </summary>
+        /// <param name="ClienteId">The cliente identifier.</param>
+        /// <returns></returns>
         public async Task<Cliente> EncontrarPorId(int ClienteId)
         {
             return await contexto.Clientes.Include(s => s.Creditos).FirstOrDefaultAsync(i => i.Id == ClienteId);
 
         }
 
+        /// <summary>
+        /// Actualizars cliente.
+        /// </summary>
+        /// <param name="cliente">The cliente.</param>
+        /// <returns></returns>
         public async Task<int> Actualizar(Cliente cliente)
         {
             var cliente_DB = await contexto.Clientes.FindAsync(cliente.Id);
@@ -58,6 +76,11 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
 
         }
 
+        /// <summary>
+        /// Borrar cliente.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<int> Borrar(int id)
         {
             var cliente = await contexto.Clientes.FindAsync(id);

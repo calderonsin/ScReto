@@ -36,12 +36,8 @@ namespace SC.ProyectoAPIV3Core2.AppServices
                 options.AddPolicy("cors", b => b.AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             });
             services.AddControllers();
-
             services.AddRespuestaApiFactory();
-            services.AddVersionedApiExplorer();
-            //var mongoConnString = GetConnection(appSettings.CreditNetstoreDbLogin);
-            //services.AddSingleton<IContext>(provider => new Context(mongoConnString, $"{appSettings.DataBaseCrediNetRequest}_{country}"));
-
+            services.AddVersionedApiExplorer();            
             services.AddAutoMapper(v =>
             {
                 v.AddDataReaderMapping();
