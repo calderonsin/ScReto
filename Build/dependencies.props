@@ -34,7 +34,7 @@
     <ConfigurationManager>5.0.0</ConfigurationManager>
     <MicrosoftExtensionsConfiguration>5.0.0</MicrosoftExtensionsConfiguration>
     <MicrosoftExtensionsConfigurationJson>5.0.0</MicrosoftExtensionsConfigurationJson>
-    <MicrosoftEntityFrameworkCoreInMemory>5.0.11</MicrosoftEntityFrameworkCoreInMemory>
+    <MicrosoftEntityFrameworkCoreInMemory>5.0.10</MicrosoftEntityFrameworkCoreInMemory>
   </PropertyGroup>
 
   <PropertyGroup Label="Test Package Versions">

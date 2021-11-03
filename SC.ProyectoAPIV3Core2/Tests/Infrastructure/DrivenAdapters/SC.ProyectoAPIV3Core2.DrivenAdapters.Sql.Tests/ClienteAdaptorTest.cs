@@ -16,15 +16,16 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests
         private readonly ScDbContexto scdbcontext;
         private readonly ClienteAdaptador clienteadapter;
         private readonly Mock<IClienteRepositorio<Cliente>> mockClienteRepository;
+        private readonly DbContextHelper dbcontexthelper;
 
-        public ClienteAdaptorTest()
+        public  ClienteAdaptorTest()
         {
             var optionBuilder = new DbContextOptionsBuilder<ScDbContexto>().UseInMemoryDatabase("ScReto")
                 .Options;
             scdbcontext = new ScDbContexto(optionBuilder);
             clienteadapter = new ClienteAdaptador(scdbcontext);
             mockClienteRepository = new Mock<IClienteRepositorio<Cliente>>();
-
+            dbcontexthelper = new DbContextHelper();
         }
 
 
@@ -32,6 +33,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests
         [Fact]
         public async Task ShouldAddClienteAdapterOk()
         {
+            
             //arrange
             ClienteDtoHelper clientedtohelper = new ClienteDtoHelper();
             Cliente cliente = new Cliente(clientedtohelper.ClienteDto());
@@ -92,14 +94,12 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests
             Assert.Equal(cliente_encontrado, resp);
         }
 
-        [Fact]
-        public async Task ShouldUpdateClientOk()
+        [Theory]
+        [InlineData(1)]
+        public async Task ShouldUpdateClientOk(int clienteid)
         {
             //arrange
-            ClienteDtoHelper clientedtohelper = new ClienteDtoHelper();
-            Cliente cliente = new Cliente(clientedtohelper.ClienteDto());
-            scdbcontext.Add(cliente);
-            await scdbcontext.SaveChangesAsync();
+            Cliente cliente =await scdbcontext.Clientes.FindAsync(clienteid);
             cliente.Apellido = "APellidoModificado";
             scdbcontext.Entry(cliente).State = EntityState.Modified;
             int CantModiContexto = await scdbcontext.SaveChangesAsync();
@@ -108,7 +108,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests
             int resp = await clienteadapter.Actualizar(cliente);
 
             //assert
-            Assert.Equal<int>(resp, CantModiContexto);
+            Assert.Equal(resp, CantModiContexto);
 
         }
 

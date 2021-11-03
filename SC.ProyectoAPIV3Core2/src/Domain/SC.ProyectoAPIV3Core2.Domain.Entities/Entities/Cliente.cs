@@ -28,7 +28,13 @@ namespace SC.ProyectoAPIV3Core2.Domain.Entities.Entities
         /// </summary>
         public Cliente()
         {
-            this.Cupo = 2000000;
+            /*this.Nombre = Nombre;
+            this.Apellido = Apellido;
+            this.Correo = Correo;
+            this.Direccion = Direccion;
+            this.Municipio = Municipio;
+            this.Departamento = Departamento;
+            this.Cupo = 2000000;*/
         }
 
         /// <summary>

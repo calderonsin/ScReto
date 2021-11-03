@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(MicrosoftEntityFrameworkCoreInMemory)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\src\Domain\SC.ProyectoAPIV3Core2.Domain.Entities\SC.ProyectoAPIV3Core2.Domain.Entities.csproj" />
+    <ProjectReference Include="..\..\..\src\Infrastructure\DrivenAdapters\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql\SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.csproj" />
   </ItemGroup>
 
 </Project>
