@@ -27,39 +27,6 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
             this.gestionar = gestionar;
             this.mappeo = mappeo;
         }
-
-        /// <summary>
-        /// muestra todos los clientes.
-        /// </summary>
-        /// <returns></returns>
-        [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(406)]
-        [HttpGet()]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Cliente>))]
-        public async Task<IActionResult> Get()
-        {
-            var respuestaNegocio = await gestionar.EncontrarTodo();
-            return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
-        }
-        /// <summary>
-        /// Encontra  por id.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        [ProducesResponseType(404)]
-        [HttpGet(Name = "EncontrarPorId")]
-        [ProducesResponseType(200, Type = typeof(Cliente))]
-        public async Task<ActionResult<Cliente>> EncontrarPorId(int id)
-        {
-            var respuestaNegocio = await gestionar.EncontrarPorId(id);
-            if (respuestaNegocio == null)
-            {
-                return NotFound();
-            }
-
-            return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
-        }
         /// <summary>
         /// Crear cliente.
         /// </summary>
@@ -72,11 +39,43 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         {
             Cliente cliente = mappeo.Map<Cliente>(cliente_dto);
             await gestionar.Añadir(cliente);
-            var respuestaNegocio = CreatedAtAction(nameof(EncontrarPorId), new { id = cliente.Id }, cliente);
-            //var respuestaNegocio = new CreatedAtRouteResult("GetById", new { id = cliente.Id }, cliente_tempo);
-            //return respuestaNegocio;
+            var respuestaNegocio = CreatedAtAction(nameof(EncontrarClientePorId), new { id = cliente.Id }, cliente);
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
+
+        /// <summary>
+        /// muestra todos los clientes.
+        /// </summary>
+        /// <returns></returns>
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(406)]
+        [HttpGet()]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Cliente>))]
+        public async Task<IActionResult> EncontrarClientes()
+        {
+            var respuestaNegocio = await gestionar.EncontrarTodo();
+            return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
+        }
+        /// <summary>
+        /// Encontra  por id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        [ProducesResponseType(404)]
+        [HttpGet()]
+        [ProducesResponseType(200, Type = typeof(Cliente))]
+        public async Task<ActionResult<Cliente>> EncontrarClientePorId(int id)
+        {
+            var respuestaNegocio = await gestionar.EncontrarPorId(id);
+            if (respuestaNegocio == null)
+            {
+                return NotFound("Cliente no encontrado");
+            }
+
+            return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
+        }
+       
         /// <summary>
         /// Actualizar cliente.
         /// </summary>
@@ -93,13 +92,12 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
             var identificador = await gestionar.Actualizar(cliente);
             if (identificador == 0)
             {
-                return BadRequest();
+                return BadRequest("Cliente no existe");
             }
             var respuestaNegocio = cliente;
-
-            //return NoContent();
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
+
         /// <summary>
         /// Borrar cliente con id.
         /// </summary>
@@ -112,17 +110,17 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
         {
             if (id == 0)
             {
-                return BadRequest();
+                return BadRequest("Id no valida");
             }
             int result = 0;
             result = await gestionar.Borrar(id);
             if (result == 0)
             {
-                return NotFound();
+                return NotFound("cliente no encontrado");
             }
             else
             {
-                return Ok();
+                return Ok("Cliente actualizado");
             }
         }
     }

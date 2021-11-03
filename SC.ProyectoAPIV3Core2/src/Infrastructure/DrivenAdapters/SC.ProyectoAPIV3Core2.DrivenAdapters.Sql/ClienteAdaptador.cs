@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
 {
     /// <summary>
-    /// EntityAdapter
+    /// ClienteAdaptador
     /// </summary>
     public class ClienteAdaptador : IClienteRepositorio<Cliente>
     {
@@ -94,8 +94,6 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
 
             // save 
             return await contexto.SaveChangesAsync();
-
-            //return Task<Cliente>;
 
 
         }

@@ -19,6 +19,9 @@ namespace SC.ProyectoAPIV3Core2.Domain.UseCase.Tests
 
         public GestionarClienteCasosUsosTest()
         {
+            var optionBuilder = new DbContextOptionsBuilder<ScDbContexto>().UseInMemoryDatabase("ScReto")
+                .Options;
+            scdbcontext = new ScDbContexto(optionBuilder);
             clienteadapter = new ClienteAdaptador(scdbcontext);
             mockClienteRepository = new Mock<IClienteRepositorio<Cliente>>();
         }

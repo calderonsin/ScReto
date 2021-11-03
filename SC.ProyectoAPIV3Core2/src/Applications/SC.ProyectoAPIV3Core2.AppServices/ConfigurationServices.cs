@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using credinet.comun.api;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SC.ProyectoAPIV3Core2.Domain.Entities.Entities;
 using SC.ProyectoAPIV3Core2.Domain.Entities.Entities.Gateway;
 using SC.ProyectoAPIV3Core2.Domain.UseCase;
 using SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo;
-using SC.ProyectoAPIV3Core2.DrivenAdapters;
 using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql;
 using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities;
 

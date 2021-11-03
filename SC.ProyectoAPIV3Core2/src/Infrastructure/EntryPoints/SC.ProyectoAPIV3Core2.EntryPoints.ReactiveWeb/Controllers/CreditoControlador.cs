@@ -16,54 +16,62 @@ namespace SC.ProyectoAPIV3Core2.EntryPoints.ReactiveWeb.Controllers
     {
         private readonly GestionarCreditoCasosUsos Gestionar;
         private readonly IMapper mapeo;
-
+        /// <summary>
+        /// Inicializa una nueva instancia de <see cref="CreditoControlador"/> class.
+        /// </summary>
+        /// <param name="gestionar">The gestionar.</param>
+        /// <param name="mapeo">The mapeo.</param>
         public CreditoControlador(GestionarCreditoCasosUsos gestionar, IMapper mapeo)
         {
             this.Gestionar = gestionar;
             this.mapeo = mapeo;
         }
-
+        /// <summary>
+        /// Encontrar todos los creditos.
+        /// </summary>
+        /// <returns></returns>
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(406)]
-        [HttpGet(Name = "GetCreditoById")]
+        [HttpGet()]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Credito>))]
-        public async Task<IActionResult> ObtenerCredito()
+        public async Task<IActionResult> EncontrarCreditos()
         {
             var respuestaNegocio = await Gestionar.EncontrarTodo();
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
-
+        /// <summary>
+        /// Encontrar credito por id.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         [ProducesResponseType(404)]
-        [HttpGet(Name = "EncontrarPorId")]
+        [HttpGet()]
         [ProducesResponseType(200, Type = typeof(Credito))]
-        public async Task<ActionResult<Credito>> EncontrarPorId(int id)
+        public async Task<ActionResult<Credito>> EncontrarCreditoPorId(int id)
         {
             var respuestaNegocio = await Gestionar.EncontrarPorId(id);
             if (respuestaNegocio == null)
             {
-                return NotFound();
+                return NotFound("credito no encontrado");
             }
-
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
 
-
-
-
+        /// <summary>Crears the specified credito dto.</summary>
+        /// <param name="credito_dto">The credito dto.</param>
+        /// <returns>
+        ///   <br />
+        /// </returns>
         [HttpPost()]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult> Crear([FromBody] Credito_dto credito_dto)
         {
-            var credito = mapeo.Map<Credito>(credito_dto);
-            var credito_BD = await Gestionar.AñadirCredito(credito);
+            Credito credito = mapeo.Map<Credito>(credito_dto);
+            await Gestionar.AñadirCredito(credito);
             //check if the request is valid or not
-            if (credito_BD == null)
-            {
-                return BadRequest();
-            }
-            var respuestaNegocio = CreatedAtAction(nameof(EncontrarPorId), new { id = credito_BD.CreditoId }, credito_BD);
+            var respuestaNegocio = CreatedAtAction(nameof(EncontrarCreditoPorId), new { id = credito.CreditoId }, credito);
             return await ProcesarResultado(Exito(Build(Request.Path.Value, 0, "", "co", respuestaNegocio)));
         }
 
