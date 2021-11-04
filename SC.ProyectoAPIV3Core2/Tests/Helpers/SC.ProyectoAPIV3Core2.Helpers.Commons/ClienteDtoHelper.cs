@@ -1,4 +1,5 @@
 ﻿using SC.ProyectoAPIV3Core2.Domain.Entities.Entities;
+using System.Collections.Generic;
 
 namespace SC.ProyectoAPIV3Core2.Helpers.Commons
 {
@@ -26,6 +27,7 @@ namespace SC.ProyectoAPIV3Core2.Helpers.Commons
 
 
         }
+
     }
 
 }

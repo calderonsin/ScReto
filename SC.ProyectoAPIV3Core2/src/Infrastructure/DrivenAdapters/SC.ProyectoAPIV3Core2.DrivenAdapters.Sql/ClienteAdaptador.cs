@@ -37,10 +37,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
         public async Task<List<Cliente>> MostrarTodo()
 
         {
-
             return await contexto.Clientes.Include(s => s.Creditos).ToListAsync();
-
-
         }
         /// <summary>
         /// Encontrars por id.
@@ -88,10 +85,7 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities
             {
                 // detach
                 contexto.Entry(cliente).State = EntityState.Deleted;
-
             }
-
-
             // save 
             return await contexto.SaveChangesAsync();
 

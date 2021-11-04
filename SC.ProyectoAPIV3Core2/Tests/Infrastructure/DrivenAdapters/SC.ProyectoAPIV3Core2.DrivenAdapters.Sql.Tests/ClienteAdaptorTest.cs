@@ -32,17 +32,13 @@ namespace SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Tests
         // 
         [Fact]
         public async Task ShouldAddClienteAdapterOk()
-        {
-            
-            //arrange
+        {   //arrange
             ClienteDtoHelper clientedtohelper = new ClienteDtoHelper();
             Cliente cliente = new Cliente(clientedtohelper.ClienteDto());
             //mockClienteRepository.Setup(c => c.Añadir(cliente)).ReturnsAsync(cliente);
             scdbcontext.Add(cliente);
-
             //act
             Cliente resp = await clienteadapter.Añadir(cliente);
-
             //Assert
             Assert.NotNull(resp);
             Assert.Equal(cliente, resp);
