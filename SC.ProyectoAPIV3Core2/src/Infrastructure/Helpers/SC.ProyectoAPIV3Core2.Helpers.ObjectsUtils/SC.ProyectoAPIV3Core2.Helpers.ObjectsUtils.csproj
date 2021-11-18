@@ -16,6 +16,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
+    <PackageReference Include="credinet-exception-middleware" Version="1.0.8147" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapperObject.cs"></None>

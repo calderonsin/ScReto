@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using SC.AdministradorLlaves;
+using SC.ProyectoAPIV3Core2.Helpers.ObjectsUtils;
 
 namespace SC.ProyectoAPIV3Core2.AppServices
 {
@@ -86,8 +87,10 @@ namespace SC.ProyectoAPIV3Core2.AppServices
             {
                 app.UseHsts();
             }
+            
             app.ConfigureExceptionHandler();
             app.UseHttpsRedirection();
+            app.UseMiddleware<ManejadorDeExcepciones>();
             app.UseAmbienteHeaderMiddleware();
             app.UseOrigenHeaderMiddleware();
             app.UseMvc();

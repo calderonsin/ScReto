@@ -7,6 +7,7 @@ using SC.ProyectoAPIV3Core2.Domain.UseCase;
 using SC.ProyectoAPIV3Core2.DrivenAdapters.Mongo;
 using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql;
 using SC.ProyectoAPIV3Core2.DrivenAdapters.Sql.Entities;
+using SC.ProyectoAPIV3Core2.Helpers.ObjectsUtils;
 
 
 namespace SC.ProyectoAPIV3Core2.AppServices
@@ -36,7 +37,7 @@ namespace SC.ProyectoAPIV3Core2.AppServices
             services.AddScoped<ITestEntityRepositorio>(provider => new EntityAdapter(services.BuildServiceProvider().GetRequiredService<IMapper>()));
             services.AddScoped<IClienteRepositorio<Cliente>>(provider => new ClienteAdaptador(services.BuildServiceProvider().GetRequiredService<ScDbContexto>()));
             services.AddScoped<ICreditoRepositorio<Credito>>(provider => new CreditoAdaptador(services.BuildServiceProvider().GetRequiredService<ScDbContexto>()));
-
+            services.AddTransient<ManejadorDeExcepciones>();
             //REGISTRE ACÁ SUS SERVICIOS
             return services;
         }
